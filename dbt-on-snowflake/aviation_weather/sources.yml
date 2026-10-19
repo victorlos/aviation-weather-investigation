@@ -5,3 +5,10 @@ sources:
     schema: PUBLIC
     tables:
       - name: raw_flights
+
+  - name: noah_weather
+    database: AVIATION_WEATHER_PROJECT
+    schema: PUBLIC
+    tables:
+      - name: raw_stations
+      - name: raw_weather

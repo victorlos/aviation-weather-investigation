@@ -7,6 +7,6 @@ aviation_weather:
       account: ''
       user: ''
       role: ACCOUNTADMIN        # or AVIATION_DEV if you created it
-      warehouse: COMPUTE_WH
+      warehouse: AVIATION_WEATHER_WAREHOUSE
       database: AVIATION_WEATHER_PROJECT
       schema: DEV

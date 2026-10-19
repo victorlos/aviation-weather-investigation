@@ -1,0 +1,1 @@
+{"_invocation_id": "647df337-1535-4d17-8da1-1a4740405276", "linked": {"0": {"name": "model.aviation_weather.dim_stations", "type": "model"}, "1": {"name": "model.aviation_weather.create_raw_weather", "type": "model"}, "2": {"name": "model.aviation_weather.create_raw_stations", "type": "model"}, "3": {"name": "model.aviation_weather.create_raw_flights", "type": "model"}}}

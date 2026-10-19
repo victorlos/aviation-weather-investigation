@@ -1,0 +1,7 @@
+version: 2
+sources:
+  - name: bts
+    database: AVIATION_WEATHER_PROJECT
+    schema: PUBLIC
+    tables:
+      - name: raw_flights

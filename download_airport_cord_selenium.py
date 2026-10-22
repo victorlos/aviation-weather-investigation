@@ -1,5 +1,5 @@
 """
-Download the BTS Master Coordinate table (T_MASTER_CORD) with Selenium,
+Download the BTS Master Coordinate table (AIRPORT_CORD) with Selenium,
 by driving a real Chrome browser: select all fields, click Download,
 wait for the zip, and extract the CSV.
 
@@ -12,7 +12,7 @@ Usage:
     python download_t_master_cord_selenium.py
 
 Output:
-    data/bts/T_MASTER_CORD.csv
+    data/bts/AIRPORT_CORD.csv
 """
 
 import time
@@ -30,7 +30,7 @@ PAGE_URL = (
 )
 OUT_DIR = Path("data/bts").resolve()
 DOWNLOAD_DIR = OUT_DIR / "_downloads"
-OUT_CSV = OUT_DIR / "T_MASTER_CORD.csv"
+OUT_CSV = OUT_DIR / "AIRPORT_CORD.csv"
 
 HEADLESS = False        # set True to run without opening a browser window
 TIMEOUT_SECONDS = 180

@@ -5,6 +5,7 @@ sources:
     schema: PUBLIC
     tables:
       - name: raw_flights
+      - name: raw_airport_lookup
 
   - name: noah_weather
     database: AVIATION_WEATHER_PROJECT

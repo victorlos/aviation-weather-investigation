@@ -106,7 +106,7 @@ def wait_for_zip() -> Path:
 
 def extract_csv(zip_path: Path) -> None:
     with zipfile.ZipFile(zip_path) as z:
-        csv_name = next(n for n in z.namelist() if n.lower().endswith("T_MASTER_CORD.csv"))
+        csv_name = next(n for n in z.namelist() if n.lower().endswith("cord.csv"))
         OUT_CSV.write_bytes(z.read(csv_name))
     print(f"[ok] saved {OUT_CSV} (from {csv_name})")
 

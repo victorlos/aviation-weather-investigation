@@ -1230,3 +1230,108 @@ ON rf.REPORTING_AIRLINE = carrier.CODE
 [0m03:54:18.308499 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 3.6052167, "process_in_blocks": "0", "process_kernel_time": 0.58, "process_mem_max_rss": "486752", "process_out_blocks": "0", "process_user_time": 3.24}
 [0m03:54:18.308858 [debug] [Dummy-1   ]: Command `cli run` succeeded at 03:54:18.308726 after 3.61 seconds
 [0m03:54:18.309150 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 05:24:04.093955 | 54ada48c-a83a-43b6-9a83-d90eb05a456a ==============================
+[0m05:24:04.093955 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m05:24:04.094585 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/tmp/dbt_effective_profiles_wcxayec4', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': '/tmp/dbt/logs', 'version_check': 'True', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt ', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'False'}
+[0m05:24:04.226095 [info ] [Dummy-1   ]: State adapter: dbt-state v0.0.0 is disabled
+[0m05:24:04.287230 [info ] [Dummy-1   ]: Registered adapter: snowflake=1.9.2
+[0m05:24:04.737253 [debug] [Dummy-1   ]: checksum: 53ed91fada2233efb98368d1716b44ab532c83a9c293cf1890b7905d5b45fb25, vars: {}, profile: , target: dev, version: 1.9.4
+[0m05:24:04.872380 [debug] [Dummy-1   ]: Partial parsing enabled: 1 files deleted, 4 files added, 1 files changed.
+[0m05:24:04.872952 [debug] [Dummy-1   ]: Partial parsing: added file: aviation_weather://models/marts/dim_flight_carrier.sql
+[0m05:24:04.873342 [debug] [Dummy-1   ]: Partial parsing: added file: aviation_weather://models/marts/fact_flights.sql
+[0m05:24:04.873617 [debug] [Dummy-1   ]: Partial parsing: added file: aviation_weather://models/intermediate/stations.sql
+[0m05:24:04.873972 [debug] [Dummy-1   ]: Partial parsing: added file: aviation_weather://models/marts/fact_airport_weather.sql
+[0m05:24:04.874257 [debug] [Dummy-1   ]: Partial parsing: deleted file: aviation_weather://models/intermediate/flights_w_coord.sql
+[0m05:24:04.874564 [debug] [Dummy-1   ]: Partial parsing: updated file: aviation_weather://models/marts/dim_stations.sql
+[0m05:24:05.102347 [error] [Dummy-1   ]: Encountered an error:
+Compilation Error
+  Model 'model.aviation_weather.fact_airport_weather' (models/marts/fact_airport_weather.sql) depends on a source named '.raw_weather' which was not found
+[0m05:24:05.103586 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 1.0615299, "process_in_blocks": "0", "process_kernel_time": 0.61, "process_mem_max_rss": "453716", "process_out_blocks": "0", "process_user_time": 2.97}
+[0m05:24:05.104019 [debug] [Dummy-1   ]: Command `cli run` failed at 05:24:05.103870 after 1.06 seconds
+[0m05:24:05.104419 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 05:26:31.154576 | 5c8b8b34-8d91-449d-a358-5ad1f47ee1f0 ==============================
+[0m05:26:31.154576 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m05:26:31.155182 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'profiles_dir': '/tmp/dbt_effective_profiles_9uekoyml', 'log_path': '/tmp/dbt/logs', 'fail_fast': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'log_format': 'default', 'invocation_command': 'dbt ', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'False'}
+[0m05:26:31.286439 [info ] [Dummy-1   ]: State adapter: dbt-state v0.0.0 is disabled
+[0m05:26:31.347486 [info ] [Dummy-1   ]: Registered adapter: snowflake=1.9.2
+[0m05:26:31.765319 [debug] [Dummy-1   ]: checksum: 53ed91fada2233efb98368d1716b44ab532c83a9c293cf1890b7905d5b45fb25, vars: {}, profile: , target: dev, version: 1.9.4
+[0m05:26:31.938077 [debug] [Dummy-1   ]: Partial parsing enabled: 1 files deleted, 4 files added, 1 files changed.
+[0m05:26:31.938607 [debug] [Dummy-1   ]: Partial parsing: added file: aviation_weather://models/marts/fact_airport_weather.sql
+[0m05:26:31.938956 [debug] [Dummy-1   ]: Partial parsing: added file: aviation_weather://models/marts/dim_flight_carrier.sql
+[0m05:26:31.939263 [debug] [Dummy-1   ]: Partial parsing: added file: aviation_weather://models/intermediate/stations.sql
+[0m05:26:31.939551 [debug] [Dummy-1   ]: Partial parsing: added file: aviation_weather://models/marts/fact_flights.sql
+[0m05:26:31.939814 [debug] [Dummy-1   ]: Partial parsing: deleted file: aviation_weather://models/intermediate/flights_w_coord.sql
+[0m05:26:31.940152 [debug] [Dummy-1   ]: Partial parsing: updated file: aviation_weather://models/marts/dim_stations.sql
+[0m05:26:32.219826 [warn ] [Dummy-1   ]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.aviation_weather.staging
+[0m05:26:32.283023 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m05:26:32.284494 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m05:26:32.316366 [info ] [Dummy-1   ]: Found 5 models, 5 sources, 474 macros
+[0m05:26:32.317954 [info ] [Dummy-1   ]: 
+[0m05:26:32.318287 [info ] [Dummy-1   ]: Concurrency: 1 threads (target='dev')
+[0m05:26:32.318537 [info ] [Dummy-1   ]: 
+[0m05:26:32.319051 [debug] [Dummy-1   ]: Acquiring new snowflake connection 'master'
+[0m05:26:32.320769 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_AVIATION_WEATHER_PROJECT'
+[0m05:26:32.402518 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT"
+[0m05:26:32.402901 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT"} */
+show terse schemas in database AVIATION_WEATHER_PROJECT
+    limit 10000
+[0m05:26:32.403208 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m05:26:33.089672 [debug] [ThreadPool]: SQL status: SUCCESS 3 in 0.686 seconds
+[0m05:26:33.095639 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_AVIATION_WEATHER_PROJECT, now list_AVIATION_WEATHER_PROJECT_DEV)
+[0m05:26:33.104928 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT_DEV"
+[0m05:26:33.105285 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT_DEV: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT_DEV"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m05:26:33.105557 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m05:26:33.728488 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.623 seconds
+[0m05:26:33.732083 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT_DEV"
+[0m05:26:33.732452 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT_DEV: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT_DEV"} */
+show objects in AVIATION_WEATHER_PROJECT.DEV
+    limit 10000
+    
+;
+[0m05:26:33.886552 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.154 seconds
+[0m05:26:33.888064 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT_DEV"
+[0m05:26:33.888374 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT_DEV: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT_DEV"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m05:26:34.000226 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.111 seconds
+[0m05:26:34.007560 [debug] [Thread-2 (]: Began running node model.aviation_weather.dim_flight_carrier
+[0m05:26:34.008090 [info ] [Thread-2 (]: 1 of 1 START sql table model DEV.dim_flight_carrier ............................ [RUN]
+[0m05:26:34.008529 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_AVIATION_WEATHER_PROJECT_DEV, now model.aviation_weather.dim_flight_carrier)
+[0m05:26:34.008982 [debug] [Thread-2 (]: Began compiling node model.aviation_weather.dim_flight_carrier
+[0m05:26:34.015381 [debug] [Thread-2 (]: Writing injected SQL for node "model.aviation_weather.dim_flight_carrier"
+[0m05:26:34.015905 [debug] [Thread-2 (]: Began executing node model.aviation_weather.dim_flight_carrier
+[0m05:26:34.040269 [debug] [Thread-2 (]: Writing runtime sql for node "model.aviation_weather.dim_flight_carrier"
+[0m05:26:34.041134 [debug] [Thread-2 (]: Using snowflake connection "model.aviation_weather.dim_flight_carrier"
+[0m05:26:34.041482 [debug] [Thread-2 (]: On model.aviation_weather.dim_flight_carrier: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "node_id": "model.aviation_weather.dim_flight_carrier"} */
+create or replace transient table AVIATION_WEATHER_PROJECT.DEV.dim_flight_carrier
+         as
+        (SELECT
+    CODE ,
+    DESCRIPTION as NAME
+FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_carrier_lookup
+        );
+[0m05:26:34.041787 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m05:26:35.782745 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 1.741 seconds
+[0m05:26:35.800011 [info ] [Thread-2 (]: 1 of 1 OK created sql table model DEV.dim_flight_carrier ....................... [[32mSUCCESS 1[0m in 1.79s]
+[0m05:26:35.800534 [debug] [Thread-2 (]: Finished running node model.aviation_weather.dim_flight_carrier
+[0m05:26:35.802369 [debug] [Dummy-1   ]: Connection 'master' was properly closed.
+[0m05:26:35.802640 [debug] [Dummy-1   ]: Connection 'model.aviation_weather.dim_flight_carrier' was properly closed.
+[0m05:26:35.802907 [info ] [Dummy-1   ]: 
+[0m05:26:35.803177 [info ] [Dummy-1   ]: Finished running 1 table model in 0 hours 0 minutes and 3.48 seconds (3.48s).
+[0m05:26:35.803643 [debug] [Dummy-1   ]: Command end result
+[0m05:26:35.820580 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m05:26:35.821863 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m05:26:35.826012 [debug] [Dummy-1   ]: Wrote artifact RunExecutionResult to /tmp/dbt/target/run_results.json
+[0m05:26:35.826304 [info ] [Dummy-1   ]: 
+[0m05:26:35.826688 [info ] [Dummy-1   ]: [32mCompleted successfully[0m
+[0m05:26:35.826938 [info ] [Dummy-1   ]: 
+[0m05:26:35.827203 [info ] [Dummy-1   ]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m05:26:35.828266 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.725516, "process_in_blocks": "0", "process_kernel_time": 0.6, "process_mem_max_rss": "488800", "process_out_blocks": "0", "process_user_time": 3.25}
+[0m05:26:35.828668 [debug] [Dummy-1   ]: Command `cli run` succeeded at 05:26:35.828492 after 4.73 seconds
+[0m05:26:35.828973 [debug] [Dummy-1   ]: Flushing usage events

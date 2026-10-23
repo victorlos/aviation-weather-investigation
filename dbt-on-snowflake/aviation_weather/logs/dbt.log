@@ -1335,3 +1335,357 @@ FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_carrier_lookup
 [0m05:26:35.828266 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.725516, "process_in_blocks": "0", "process_kernel_time": 0.6, "process_mem_max_rss": "488800", "process_out_blocks": "0", "process_user_time": 3.25}
 [0m05:26:35.828668 [debug] [Dummy-1   ]: Command `cli run` succeeded at 05:26:35.828492 after 4.73 seconds
 [0m05:26:35.828973 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 06:16:03.755370 | fa7b590e-ffc6-4bc4-867c-65e0a4a7d837 ==============================
+[0m06:16:03.755370 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m06:16:03.756065 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/tmp/dbt/logs', 'profiles_dir': '/tmp/dbt_effective_profiles_hs9o74oh', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt ', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'False'}
+[0m06:16:03.892034 [info ] [Dummy-1   ]: State adapter: dbt-state v0.0.0 is disabled
+[0m06:16:03.954684 [info ] [Dummy-1   ]: Registered adapter: snowflake=1.9.2
+[0m06:16:04.412581 [debug] [Dummy-1   ]: checksum: 53ed91fada2233efb98368d1716b44ab532c83a9c293cf1890b7905d5b45fb25, vars: {}, profile: , target: dev, version: 1.9.4
+[0m06:16:04.579473 [debug] [Dummy-1   ]: Partial parsing enabled: 0 files deleted, 2 files added, 1 files changed.
+[0m06:16:04.580094 [debug] [Dummy-1   ]: Partial parsing: added file: aviation_weather://models/marts/dim_airports.sql
+[0m06:16:04.580460 [debug] [Dummy-1   ]: Partial parsing: added file: aviation_weather://models/marts/fact_flights_weather_delay.sql
+[0m06:16:04.580834 [debug] [Dummy-1   ]: Partial parsing: updated file: aviation_weather://models/marts/dim_stations.sql
+[0m06:16:04.874858 [warn ] [Dummy-1   ]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.aviation_weather.staging
+[0m06:16:04.939008 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m06:16:04.940652 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m06:16:04.974680 [info ] [Dummy-1   ]: Found 7 models, 5 sources, 474 macros
+[0m06:16:04.976369 [info ] [Dummy-1   ]: 
+[0m06:16:04.976738 [info ] [Dummy-1   ]: Concurrency: 1 threads (target='dev')
+[0m06:16:04.976986 [info ] [Dummy-1   ]: 
+[0m06:16:04.977476 [debug] [Dummy-1   ]: Acquiring new snowflake connection 'master'
+[0m06:16:04.979494 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_AVIATION_WEATHER_PROJECT'
+[0m06:16:05.060070 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT"
+[0m06:16:05.060493 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT"} */
+show terse schemas in database AVIATION_WEATHER_PROJECT
+    limit 10000
+[0m06:16:05.060797 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:16:05.659672 [debug] [ThreadPool]: SQL status: SUCCESS 3 in 0.599 seconds
+[0m06:16:05.666001 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_AVIATION_WEATHER_PROJECT, now list_AVIATION_WEATHER_PROJECT_DEV)
+[0m06:16:05.675738 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT_DEV"
+[0m06:16:05.676187 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT_DEV: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT_DEV"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m06:16:05.676470 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:16:06.256487 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.580 seconds
+[0m06:16:06.260014 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT_DEV"
+[0m06:16:06.260402 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT_DEV: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT_DEV"} */
+show objects in AVIATION_WEATHER_PROJECT.DEV
+    limit 10000
+    
+;
+[0m06:16:06.418399 [debug] [ThreadPool]: SQL status: SUCCESS 2 in 0.158 seconds
+[0m06:16:06.420162 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT_DEV"
+[0m06:16:06.420508 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT_DEV: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT_DEV"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m06:16:06.527336 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.106 seconds
+[0m06:16:06.535055 [debug] [Thread-2 (]: Began running node model.aviation_weather.dim_airports
+[0m06:16:06.535594 [info ] [Thread-2 (]: 1 of 1 START sql table model DEV.dim_airports .................................. [RUN]
+[0m06:16:06.536079 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_AVIATION_WEATHER_PROJECT_DEV, now model.aviation_weather.dim_airports)
+[0m06:16:06.536385 [debug] [Thread-2 (]: Began compiling node model.aviation_weather.dim_airports
+[0m06:16:06.542926 [debug] [Thread-2 (]: Writing injected SQL for node "model.aviation_weather.dim_airports"
+[0m06:16:06.543434 [debug] [Thread-2 (]: Began executing node model.aviation_weather.dim_airports
+[0m06:16:06.568314 [debug] [Thread-2 (]: Writing runtime sql for node "model.aviation_weather.dim_airports"
+[0m06:16:06.569397 [debug] [Thread-2 (]: Using snowflake connection "model.aviation_weather.dim_airports"
+[0m06:16:06.569767 [debug] [Thread-2 (]: On model.aviation_weather.dim_airports: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "node_id": "model.aviation_weather.dim_airports"} */
+create or replace transient table AVIATION_WEATHER_PROJECT.DEV.dim_airports
+         as
+        (SELECT 
+  AIRPORT_SEQ_ID,
+  AIRPORT_ID,
+  AIRPORT,
+  DISPLAY_AIRPORT_NAME,
+  DISPLAY_AIRPORT_CITY_NAME_FULL, 
+  AIRPORT_COUNTRY_NAME,
+  AIRPORT_COUNTRY_CODE_ISO,
+  AIRPORT_STATE_NAME, 
+  AIRPORT_STATE_CODE,
+  DISPLAY_CITY_MARKET_NAME_FULL,
+  LATITUDE, 
+  LONGITUDE
+FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_airport_coordinates
+WHERE 1=1
+ AND AIRPORT_IS_LATEST = 1
+ AND AIRPORT_IS_CLOSED = 0
+        );
+[0m06:16:06.570095 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m06:16:08.836762 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 2.266 seconds
+[0m06:16:08.854392 [info ] [Thread-2 (]: 1 of 1 OK created sql table model DEV.dim_airports ............................. [[32mSUCCESS 1[0m in 2.32s]
+[0m06:16:08.854965 [debug] [Thread-2 (]: Finished running node model.aviation_weather.dim_airports
+[0m06:16:08.857159 [debug] [Dummy-1   ]: Connection 'master' was properly closed.
+[0m06:16:08.857484 [debug] [Dummy-1   ]: Connection 'model.aviation_weather.dim_airports' was properly closed.
+[0m06:16:08.857774 [info ] [Dummy-1   ]: 
+[0m06:16:08.858059 [info ] [Dummy-1   ]: Finished running 1 table model in 0 hours 0 minutes and 3.88 seconds (3.88s).
+[0m06:16:08.858580 [debug] [Dummy-1   ]: Command end result
+[0m06:16:08.876258 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m06:16:08.877684 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m06:16:08.882093 [debug] [Dummy-1   ]: Wrote artifact RunExecutionResult to /tmp/dbt/target/run_results.json
+[0m06:16:08.882415 [info ] [Dummy-1   ]: 
+[0m06:16:08.882800 [info ] [Dummy-1   ]: [32mCompleted successfully[0m
+[0m06:16:08.883064 [info ] [Dummy-1   ]: 
+[0m06:16:08.883341 [info ] [Dummy-1   ]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m06:16:08.884645 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 5.182692, "process_in_blocks": "0", "process_kernel_time": 0.64, "process_mem_max_rss": "489568", "process_out_blocks": "0", "process_user_time": 3.49}
+[0m06:16:08.885076 [debug] [Dummy-1   ]: Command `cli run` succeeded at 06:16:08.884931 after 5.18 seconds
+[0m06:16:08.885390 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 06:22:28.536380 | c16ffb36-e1d7-4439-8b11-87870552167d ==============================
+[0m06:22:28.536380 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m06:22:28.536982 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'profiles_dir': '/tmp/dbt_effective_profiles_wn67r2vf', 'log_path': '/tmp/dbt/logs', 'fail_fast': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt ', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'False'}
+[0m06:22:28.668785 [info ] [Dummy-1   ]: State adapter: dbt-state v0.0.0 is disabled
+[0m06:22:28.730144 [info ] [Dummy-1   ]: Registered adapter: snowflake=1.9.2
+[0m06:22:29.175582 [debug] [Dummy-1   ]: checksum: 53ed91fada2233efb98368d1716b44ab532c83a9c293cf1890b7905d5b45fb25, vars: {}, profile: , target: dev, version: 1.9.4
+[0m06:22:29.312872 [debug] [Dummy-1   ]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m06:22:29.313283 [debug] [Dummy-1   ]: Partial parsing enabled, no changes found, skipping parsing
+[0m06:22:29.362220 [warn ] [Dummy-1   ]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.aviation_weather.staging
+[0m06:22:29.437084 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m06:22:29.438690 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m06:22:29.470188 [info ] [Dummy-1   ]: Found 7 models, 5 sources, 474 macros
+[0m06:22:29.471865 [info ] [Dummy-1   ]: 
+[0m06:22:29.472205 [info ] [Dummy-1   ]: Concurrency: 1 threads (target='dev')
+[0m06:22:29.472499 [info ] [Dummy-1   ]: 
+[0m06:22:29.472990 [debug] [Dummy-1   ]: Acquiring new snowflake connection 'master'
+[0m06:22:29.477591 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_AVIATION_WEATHER_PROJECT'
+[0m06:22:29.564330 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT"
+[0m06:22:29.564721 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT"} */
+show terse schemas in database AVIATION_WEATHER_PROJECT
+    limit 10000
+[0m06:22:29.565002 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:22:30.340948 [debug] [ThreadPool]: SQL status: SUCCESS 3 in 0.776 seconds
+[0m06:22:30.344519 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_AVIATION_WEATHER_PROJECT_DEV'
+[0m06:22:30.353952 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT_DEV"
+[0m06:22:30.354336 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT_DEV: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT_DEV"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m06:22:30.354635 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:22:31.047719 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.693 seconds
+[0m06:22:31.051180 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT_DEV"
+[0m06:22:31.051530 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT_DEV: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT_DEV"} */
+show objects in AVIATION_WEATHER_PROJECT.DEV
+    limit 10000
+    
+;
+[0m06:22:31.189033 [debug] [ThreadPool]: SQL status: SUCCESS 3 in 0.137 seconds
+[0m06:22:31.190927 [debug] [ThreadPool]: Using snowflake connection "list_AVIATION_WEATHER_PROJECT_DEV"
+[0m06:22:31.191276 [debug] [ThreadPool]: On list_AVIATION_WEATHER_PROJECT_DEV: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "connection_name": "list_AVIATION_WEATHER_PROJECT_DEV"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m06:22:31.279927 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.088 seconds
+[0m06:22:31.287514 [debug] [Thread-2 (]: Began running node model.aviation_weather.dim_airports
+[0m06:22:31.288033 [info ] [Thread-2 (]: 1 of 6 START sql table model DEV.dim_airports .................................. [RUN]
+[0m06:22:31.288472 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_AVIATION_WEATHER_PROJECT_DEV, now model.aviation_weather.dim_airports)
+[0m06:22:31.288778 [debug] [Thread-2 (]: Began compiling node model.aviation_weather.dim_airports
+[0m06:22:31.295394 [debug] [Thread-2 (]: Writing injected SQL for node "model.aviation_weather.dim_airports"
+[0m06:22:31.295896 [debug] [Thread-2 (]: Began executing node model.aviation_weather.dim_airports
+[0m06:22:31.319766 [debug] [Thread-2 (]: Writing runtime sql for node "model.aviation_weather.dim_airports"
+[0m06:22:31.320777 [debug] [Thread-2 (]: Using snowflake connection "model.aviation_weather.dim_airports"
+[0m06:22:31.321124 [debug] [Thread-2 (]: On model.aviation_weather.dim_airports: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "node_id": "model.aviation_weather.dim_airports"} */
+create or replace transient table AVIATION_WEATHER_PROJECT.DEV.dim_airports
+         as
+        (SELECT 
+  AIRPORT_SEQ_ID,
+  AIRPORT_ID,
+  AIRPORT,
+  DISPLAY_AIRPORT_NAME,
+  DISPLAY_AIRPORT_CITY_NAME_FULL, 
+  AIRPORT_COUNTRY_NAME,
+  AIRPORT_COUNTRY_CODE_ISO,
+  AIRPORT_STATE_NAME, 
+  AIRPORT_STATE_CODE,
+  DISPLAY_CITY_MARKET_NAME_FULL,
+  LATITUDE, 
+  LONGITUDE
+FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_airport_coordinates
+WHERE 1=1
+ AND AIRPORT_IS_LATEST = 1
+ AND AIRPORT_IS_CLOSED = 0
+        );
+[0m06:22:31.321424 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m06:22:33.104312 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 1.783 seconds
+[0m06:22:33.124270 [info ] [Thread-2 (]: 1 of 6 OK created sql table model DEV.dim_airports ............................. [[32mSUCCESS 1[0m in 1.83s]
+[0m06:22:33.124821 [debug] [Thread-2 (]: Finished running node model.aviation_weather.dim_airports
+[0m06:22:33.125220 [debug] [Thread-2 (]: Began running node model.aviation_weather.dim_flight_carrier
+[0m06:22:33.125721 [info ] [Thread-2 (]: 2 of 6 START sql table model DEV.dim_flight_carrier ............................ [RUN]
+[0m06:22:33.126120 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.aviation_weather.dim_airports, now model.aviation_weather.dim_flight_carrier)
+[0m06:22:33.126412 [debug] [Thread-2 (]: Began compiling node model.aviation_weather.dim_flight_carrier
+[0m06:22:33.129427 [debug] [Thread-2 (]: Writing injected SQL for node "model.aviation_weather.dim_flight_carrier"
+[0m06:22:33.129900 [debug] [Thread-2 (]: Began executing node model.aviation_weather.dim_flight_carrier
+[0m06:22:33.132740 [debug] [Thread-2 (]: Writing runtime sql for node "model.aviation_weather.dim_flight_carrier"
+[0m06:22:33.133405 [debug] [Thread-2 (]: Using snowflake connection "model.aviation_weather.dim_flight_carrier"
+[0m06:22:33.133735 [debug] [Thread-2 (]: On model.aviation_weather.dim_flight_carrier: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "node_id": "model.aviation_weather.dim_flight_carrier"} */
+create or replace transient table AVIATION_WEATHER_PROJECT.DEV.dim_flight_carrier
+         as
+        (SELECT
+    CODE ,
+    DESCRIPTION as NAME
+FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_carrier_lookup
+        );
+[0m06:22:33.134039 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m06:22:34.549563 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 1.415 seconds
+[0m06:22:34.552235 [info ] [Thread-2 (]: 2 of 6 OK created sql table model DEV.dim_flight_carrier ....................... [[32mSUCCESS 1[0m in 1.43s]
+[0m06:22:34.552732 [debug] [Thread-2 (]: Finished running node model.aviation_weather.dim_flight_carrier
+[0m06:22:34.553096 [debug] [Thread-2 (]: Began running node model.aviation_weather.fact_airport_weather
+[0m06:22:34.553595 [info ] [Thread-2 (]: 3 of 6 START sql table model DEV.fact_airport_weather .......................... [RUN]
+[0m06:22:34.554007 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.aviation_weather.dim_flight_carrier, now model.aviation_weather.fact_airport_weather)
+[0m06:22:34.554301 [debug] [Thread-2 (]: Began compiling node model.aviation_weather.fact_airport_weather
+[0m06:22:34.557825 [debug] [Thread-2 (]: Writing injected SQL for node "model.aviation_weather.fact_airport_weather"
+[0m06:22:34.558336 [debug] [Thread-2 (]: Began executing node model.aviation_weather.fact_airport_weather
+[0m06:22:34.561376 [debug] [Thread-2 (]: Writing runtime sql for node "model.aviation_weather.fact_airport_weather"
+[0m06:22:34.562580 [debug] [Thread-2 (]: Using snowflake connection "model.aviation_weather.fact_airport_weather"
+[0m06:22:34.563032 [debug] [Thread-2 (]: On model.aviation_weather.fact_airport_weather: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "node_id": "model.aviation_weather.fact_airport_weather"} */
+create or replace transient table AVIATION_WEATHER_PROJECT.DEV.fact_airport_weather
+         as
+        (SELECT 
+    ID, 
+    TO_DATE(date::varchar, 'YYYYMMDD') as DATE,
+    max(iff(element = 'PRCP', data_value / 10, null)) >= 25  as is_heavy_rain,
+    max(iff(element = 'WSF5', data_value / 10 , null)) >= 15 as is_high_wind,
+    max(iff(element = 'TMIN', data_value / 10 , null )) <= 0 as is_freezing,
+    max(iff(element = 'PRCP', data_value / 10, null))  as precip_mm,
+    max(iff(element = 'WSF5', data_value / 10, null))  as max_gust_ms,
+    max(iff(element = 'TMIN', data_value / 10, null))  as tmin_c,
+    max(iff(element = 'WT03', 1, 0)) = 1          as had_thunder,
+    max(iff(element in ('WT01','WT02','WT21','WT22'), 1, 0)) = 1 as had_fog,
+    max(iff(element in ('WT06','WT15','WT17'), 1, 0)) = 1        as had_icing
+FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_weather
+WHERE ID like 'USW%' -- FILTER FOR STATIONS AT AIRPORTS
+GROUP BY 1,2
+        );
+[0m06:22:34.563373 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m06:22:37.180746 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 2.617 seconds
+[0m06:22:37.183093 [info ] [Thread-2 (]: 3 of 6 OK created sql table model DEV.fact_airport_weather ..................... [[32mSUCCESS 1[0m in 2.63s]
+[0m06:22:37.183592 [debug] [Thread-2 (]: Finished running node model.aviation_weather.fact_airport_weather
+[0m06:22:37.183965 [debug] [Thread-2 (]: Began running node model.aviation_weather.fact_flights
+[0m06:22:37.184443 [info ] [Thread-2 (]: 4 of 6 START sql table model DEV.fact_flights .................................. [RUN]
+[0m06:22:37.184832 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.aviation_weather.fact_airport_weather, now model.aviation_weather.fact_flights)
+[0m06:22:37.185127 [debug] [Thread-2 (]: Began compiling node model.aviation_weather.fact_flights
+[0m06:22:37.189782 [debug] [Thread-2 (]: Writing injected SQL for node "model.aviation_weather.fact_flights"
+[0m06:22:37.190293 [debug] [Thread-2 (]: Began executing node model.aviation_weather.fact_flights
+[0m06:22:37.193318 [debug] [Thread-2 (]: Writing runtime sql for node "model.aviation_weather.fact_flights"
+[0m06:22:37.194214 [debug] [Thread-2 (]: Using snowflake connection "model.aviation_weather.fact_flights"
+[0m06:22:37.194594 [debug] [Thread-2 (]: On model.aviation_weather.fact_flights: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "node_id": "model.aviation_weather.fact_flights"} */
+create or replace transient table AVIATION_WEATHER_PROJECT.DEV.fact_flights
+         as
+        (SELECT 
+    FLIGHTDATE,
+    REPORTING_AIRLINE,
+    CARRIER.DESCRIPTION AS AIRLINE_NAME,
+    ORIGINAIRPORTID,
+    DESTAIRPORTID,
+    DEPTIME,
+    DEPDELAY,
+    ARRTIME,
+    ARRDELAY,
+    CANCELLED,
+    AIRTIME,
+    WEATHERDELAY,
+    NASDELAY,
+    SECURITYDELAY,
+    LATEAIRCRAFTDELAY
+FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_flights rf
+        );
+[0m06:22:37.194891 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m06:22:37.813019 [debug] [Thread-2 (]: Snowflake adapter: Snowflake query id: 01c7ec42-0001-bebe-0001-727e001ef89e
+[0m06:22:37.813449 [debug] [Thread-2 (]: Snowflake adapter: Snowflake error: 000904 (42000): SQL compilation error: error line 6 at position 4
+invalid identifier 'CARRIER.DESCRIPTION'
+[0m06:22:37.816431 [debug] [Thread-2 (]: Database Error in model fact_flights (models/marts/fact_flights.sql)
+  000904 (42000): SQL compilation error: error line 6 at position 4
+  invalid identifier 'CARRIER.DESCRIPTION'
+  compiled code at target/run/aviation_weather/models/marts/fact_flights.sql
+[0m06:22:37.817183 [error] [Thread-2 (]: 4 of 6 ERROR creating sql table model DEV.fact_flights ......................... [[31mERROR[0m in 0.63s]
+[0m06:22:37.817624 [debug] [Thread-2 (]: Finished running node model.aviation_weather.fact_flights
+[0m06:22:37.818003 [debug] [Thread-2 (]: Began running node model.aviation_weather.stations
+[0m06:22:37.818422 [debug] [Thread-5 (]: Marking all children of 'model.aviation_weather.fact_flights' to be skipped because of status 'error'.  Reason: Database Error in model fact_flights (models/marts/fact_flights.sql)
+  000904 (42000): SQL compilation error: error line 6 at position 4
+  invalid identifier 'CARRIER.DESCRIPTION'
+  compiled code at target/run/aviation_weather/models/marts/fact_flights.sql.
+[0m06:22:37.818899 [info ] [Thread-2 (]: 5 of 6 START sql view model DEV.stations ....................................... [RUN]
+[0m06:22:37.819937 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.aviation_weather.fact_flights, now model.aviation_weather.stations)
+[0m06:22:37.820250 [debug] [Thread-2 (]: Began compiling node model.aviation_weather.stations
+[0m06:22:37.823633 [debug] [Thread-2 (]: Writing injected SQL for node "model.aviation_weather.stations"
+[0m06:22:37.824099 [debug] [Thread-2 (]: Began executing node model.aviation_weather.stations
+[0m06:22:37.846986 [debug] [Thread-2 (]: Writing runtime sql for node "model.aviation_weather.stations"
+[0m06:22:37.848006 [debug] [Thread-2 (]: Using snowflake connection "model.aviation_weather.stations"
+[0m06:22:37.848373 [debug] [Thread-2 (]: On model.aviation_weather.stations: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "node_id": "model.aviation_weather.stations"} */
+create or replace   view AVIATION_WEATHER_PROJECT.DEV.stations
+  
+   as (
+    SELECT 
+  TRIM(SUBSTR(ALL_DATA, 1, 11))           AS station_id,
+  TRY_TO_DOUBLE(SUBSTR(ALL_DATA, 13, 8))  AS latitude,
+  TRY_TO_DOUBLE(SUBSTR(ALL_DATA, 22, 9))  AS longitude,
+  TRY_TO_DOUBLE(SUBSTR(ALL_DATA, 32, 6))  AS alttiude,
+  TRIM(SUBSTR(ALL_DATA, 39, 2))           AS state,
+  TRIM(SUBSTR(ALL_DATA, 42, 30))          AS name
+FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_stations
+WHERE 1=1
+AND TRIM(SUBSTR(ALL_DATA, 1, 3)) = 'USW' -- ONLY GET STATIONS AT US AIRPORTS
+  );
+[0m06:22:37.848677 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m06:22:38.859593 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 1.011 seconds
+[0m06:22:38.861880 [info ] [Thread-2 (]: 5 of 6 OK created sql view model DEV.stations .................................. [[32mSUCCESS 1[0m in 1.04s]
+[0m06:22:38.862402 [debug] [Thread-2 (]: Finished running node model.aviation_weather.stations
+[0m06:22:38.863466 [debug] [Thread-2 (]: Began running node model.aviation_weather.dim_stations
+[0m06:22:38.864209 [info ] [Thread-2 (]: 6 of 6 START sql table model DEV.dim_stations .................................. [RUN]
+[0m06:22:38.864707 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.aviation_weather.stations, now model.aviation_weather.dim_stations)
+[0m06:22:38.865031 [debug] [Thread-2 (]: Began compiling node model.aviation_weather.dim_stations
+[0m06:22:38.869852 [debug] [Thread-2 (]: Writing injected SQL for node "model.aviation_weather.dim_stations"
+[0m06:22:38.870390 [debug] [Thread-2 (]: Began executing node model.aviation_weather.dim_stations
+[0m06:22:38.873634 [debug] [Thread-2 (]: Writing runtime sql for node "model.aviation_weather.dim_stations"
+[0m06:22:38.874445 [debug] [Thread-2 (]: Using snowflake connection "model.aviation_weather.dim_stations"
+[0m06:22:38.874845 [debug] [Thread-2 (]: On model.aviation_weather.dim_stations: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "aviation_weather", "target_name": "dev", "node_id": "model.aviation_weather.dim_stations"} */
+create or replace transient table AVIATION_WEATHER_PROJECT.DEV.dim_stations
+         as
+        (SELECT 
+  STATION_ID,
+  LATITUDE,
+  LONGITUDE,
+  ALTITUDE,
+  STATE,
+  NAME
+FROM AVIATION_WEATHER_PROJECT.DEV.stations
+WHERE 
+    TRIM(SUBSTR(ALL_DATA, 1, 3)) = 'USW' -- ONLY GET STATIONS AT US AIRPORTS
+        );
+[0m06:22:38.875141 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m06:22:39.541827 [debug] [Thread-2 (]: Snowflake adapter: Snowflake query id: 01c7ec42-0001-bebe-0001-727e001ef8ce
+[0m06:22:39.542276 [debug] [Thread-2 (]: Snowflake adapter: Snowflake error: 000904 (42000): SQL compilation error: error line 7 at position 2
+invalid identifier 'ALTITUDE'
+[0m06:22:39.544892 [debug] [Thread-2 (]: Database Error in model dim_stations (models/marts/dim_stations.sql)
+  000904 (42000): SQL compilation error: error line 7 at position 2
+  invalid identifier 'ALTITUDE'
+  compiled code at target/run/aviation_weather/models/marts/dim_stations.sql
+[0m06:22:39.545616 [error] [Thread-2 (]: 6 of 6 ERROR creating sql table model DEV.dim_stations ......................... [[31mERROR[0m in 0.68s]
+[0m06:22:39.546052 [debug] [Thread-2 (]: Finished running node model.aviation_weather.dim_stations
+[0m06:22:39.546479 [debug] [Thread-5 (]: Marking all children of 'model.aviation_weather.dim_stations' to be skipped because of status 'error'.  Reason: Database Error in model dim_stations (models/marts/dim_stations.sql)
+  000904 (42000): SQL compilation error: error line 7 at position 2
+  invalid identifier 'ALTITUDE'
+  compiled code at target/run/aviation_weather/models/marts/dim_stations.sql.
+[0m06:22:39.548480 [debug] [Dummy-1   ]: Connection 'master' was properly closed.
+[0m06:22:39.548828 [debug] [Dummy-1   ]: Connection 'list_AVIATION_WEATHER_PROJECT' was properly closed.
+[0m06:22:39.549068 [debug] [Dummy-1   ]: Connection 'model.aviation_weather.dim_stations' was properly closed.
+[0m06:22:39.549398 [info ] [Dummy-1   ]: 
+[0m06:22:39.549667 [info ] [Dummy-1   ]: Finished running 5 table models, 1 view model in 0 hours 0 minutes and 10.08 seconds (10.08s).
+[0m06:22:39.550619 [debug] [Dummy-1   ]: Command end result
+[0m06:22:39.568190 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m06:22:39.569577 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m06:22:39.574041 [debug] [Dummy-1   ]: Wrote artifact RunExecutionResult to /tmp/dbt/target/run_results.json
+[0m06:22:39.574351 [info ] [Dummy-1   ]: 
+[0m06:22:39.574764 [info ] [Dummy-1   ]: [31mCompleted with 2 errors, 0 partial successes, and 0 warnings:[0m
+[0m06:22:39.575040 [info ] [Dummy-1   ]: 
+[0m06:22:39.575381 [error] [Dummy-1   ]:   Database Error in model fact_flights (models/marts/fact_flights.sql)
+  000904 (42000): SQL compilation error: error line 6 at position 4
+  invalid identifier 'CARRIER.DESCRIPTION'
+  compiled code at target/run/aviation_weather/models/marts/fact_flights.sql
+[0m06:22:39.575630 [info ] [Dummy-1   ]: 
+[0m06:22:39.575935 [error] [Dummy-1   ]:   Database Error in model dim_stations (models/marts/dim_stations.sql)
+  000904 (42000): SQL compilation error: error line 7 at position 2
+  invalid identifier 'ALTITUDE'
+  compiled code at target/run/aviation_weather/models/marts/dim_stations.sql
+[0m06:22:39.576158 [info ] [Dummy-1   ]: 
+[0m06:22:39.576419 [info ] [Dummy-1   ]: Done. PASS=4 WARN=0 ERROR=2 SKIP=0 TOTAL=6
+[0m06:22:39.577496 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 11.092823, "process_in_blocks": "0", "process_kernel_time": 0.7, "process_mem_max_rss": "446792", "process_out_blocks": "0", "process_user_time": 3.16}
+[0m06:22:39.577862 [debug] [Dummy-1   ]: Command `cli run` failed at 06:22:39.577727 after 11.09 seconds
+[0m06:22:39.578203 [debug] [Dummy-1   ]: Flushing usage events

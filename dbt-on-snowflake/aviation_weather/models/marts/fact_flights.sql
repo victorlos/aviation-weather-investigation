@@ -2,7 +2,7 @@
 SELECT 
     FLIGHTDATE,
     REPORTING_AIRLINE,
-    CARRIER.DESCRIPTION AS AIRLINE_NAME,
+    carrier.DESCRIPTION AS CARRIER_NAME,
     ORIGINAIRPORTID,
     DESTAIRPORTID,
     DEPTIME,
@@ -16,3 +16,5 @@ SELECT
     SECURITYDELAY,
     LATEAIRCRAFTDELAY
 FROM {{ source( 'bts', 'raw_flights') }} rf
+LEFT JOIN {{ source('bts','raw_carrier_lookup') }} carrier
+ON rf.REPORTING_AIRLINE = carrier.CODE

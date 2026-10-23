@@ -1,0 +1,26 @@
+
+  
+    
+
+        create or replace transient table AVIATION_WEATHER_PROJECT.DEV.fact_flights
+         as
+        (SELECT 
+    FLIGHTDATE,
+    REPORTING_AIRLINE,
+    CARRIER.DESCRIPTION AS AIRLINE_NAME,
+    ORIGINAIRPORTID,
+    DESTAIRPORTID,
+    DEPTIME,
+    DEPDELAY,
+    ARRTIME,
+    ARRDELAY,
+    CANCELLED,
+    AIRTIME,
+    WEATHERDELAY,
+    NASDELAY,
+    SECURITYDELAY,
+    LATEAIRCRAFTDELAY
+FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_flights rf
+        );
+      
+  

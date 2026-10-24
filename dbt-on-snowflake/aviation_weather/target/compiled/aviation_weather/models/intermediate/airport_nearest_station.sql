@@ -6,7 +6,7 @@ WITH STATIONS AS (
       TRY_TO_DOUBLE(SUBSTR(ALL_DATA, 32, 6))  AS ALTITUDE,
       TRIM(SUBSTR(ALL_DATA, 39, 2))           AS STATE,
       TRIM(SUBSTR(ALL_DATA, 42, 30))          AS NAME
-    FROM {{ source('noah_weather','raw_stations') }}
+    FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_stations
     WHERE 1=1
        AND TRIM(SUBSTR(ALL_DATA, 1, 3)) = 'USW' -- ONLY GET STATIONS AT US AIRPORTS
     ),
@@ -25,8 +25,7 @@ WITH STATIONS AS (
       DISPLAY_CITY_MARKET_NAME_FULL,
       LATITUDE, 
       LONGITUDE
-    FROM {{ source('bts','raw_airport_coordinates') }}
-    LEFT JOIN 
+    FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_airport_coordinates
     WHERE 1=1
      AND AIRPORT_IS_LATEST = 1 -- FILTER FOR LAST ROW OF AIRPORT IN SOURCE
      AND AIRPORT_IS_CLOSED = 0 -- FILTER FOR OPEN AIRPORTS

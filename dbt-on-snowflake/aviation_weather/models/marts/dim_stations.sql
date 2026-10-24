@@ -6,6 +6,6 @@ SELECT
   ALTITUDE,
   STATE,
   NAME
-FROM {{ ref('stations') }}
+FROM {{ source('noah_weather','raw_stations') }}
 WHERE 
     TRIM(SUBSTR(ALL_DATA, 1, 3)) = 'USW' -- ONLY GET STATIONS AT US AIRPORTS

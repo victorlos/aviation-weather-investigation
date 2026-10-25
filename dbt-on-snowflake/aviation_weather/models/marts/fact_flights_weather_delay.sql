@@ -20,10 +20,10 @@ FROM {{ ref('fact_flights') }} ff
 LEFT JOIN {{ ref('dim_airports') }} da_dest
 ON ff.DESTAIRPORTID = da_dest.AIRPORT_ID
 LEFT JOIN {{ ref('dim_airports') }} da_orig
-ON ff.DESTAIRPORTID = da_orig.AIRPORT_ID
+ON ff.ORIGINAIRPORTID = da_orig.AIRPORT_ID
 JOIN {{ ref('fact_weather') }} fw_dest
 ON fw_dest.date = ff.flightdate      -- MATCH ON THE WEATHER FOR EACH DATE
-AND da_dest.STATION_ID = fw_dest.ID -- ONLY GET WEATHER FROM AIRPORTS WITH CLOSE STATION
+AND da_dest.STATION_ID = fw_dest.STATION_ID -- ONLY GET WEATHER FROM AIRPORTS WITH CLOSE STATION
 JOIN {{ ref('fact_weather') }} fw_orig
 ON fw_orig.date = ff.flightdate      -- MATCH ON THE WEATHER FOR EACH DATE
-AND da_orig.STATION_ID = fw_orig.ID -- ONLY GET WEATHER FROM AIRPORTS WITH CLOSE STATION
+AND da_orig.STATION_ID = fw_orig.STATION_ID -- ONLY GET WEATHER FROM AIRPORTS WITH CLOSE STATION

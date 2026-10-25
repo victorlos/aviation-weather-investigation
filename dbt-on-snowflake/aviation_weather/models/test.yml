@@ -1,0 +1,40 @@
+
+models:
+  - name: dim_stations
+    description: "This table contains the station information for all stations in the US."
+    columns:
+     - name: STATION_ID
+       description: "The unique identifier for the station."
+       data_tests:
+          - not_null
+          - unique
+     - name: LATITUDE
+       description: "The latitude of the station."
+       data_tests:
+          - not_null
+     - name: LONGITUDE
+       description: "The longitude of the station." 
+       data_tests:
+          - not_null
+  - name: dim_airports
+    description: "This table contains the airport information for all airports in the US."
+    columns:
+     - name: AIRPORT_ID
+       description: "The unique identifier for the airport."
+       data_tests:
+          - not_null
+          - unique
+  - name: fact_weather
+    description: "This table contains the weather information for the weather in the US."
+    columns:
+     - name: STATION_ID
+       description: "The unique identifier for the station."
+       data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_stations')
+              field: STATION_ID
+     - name: DATE
+       description: "The date of the weather observation."
+       data_tests:
+          - not_null

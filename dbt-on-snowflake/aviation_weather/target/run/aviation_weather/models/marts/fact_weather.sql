@@ -2,10 +2,15 @@
   
     
 
-        create or replace transient table AVIATION_WEATHER_PROJECT.DEV.fact_weather
-         as
-        (SELECT 
-    ID, 
+create or replace transient table AVIATION_WEATHER_PROJECT.DEV.fact_weather
+    
+    
+    
+    
+    
+
+    as (SELECT 
+    ID as STATION_ID, 
     TO_DATE(date::varchar, 'YYYYMMDD') as DATE,
     max(iff(element = 'PRCP', data_value / 10, null)) >= 25  as is_heavy_rain,
     max(iff(element = 'WSF5', data_value / 10 , null)) >= 15 as is_high_wind,
@@ -19,6 +24,8 @@
 FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_weather
 WHERE ID like 'USW%' -- FILTER FOR STATIONS AT AIRPORTS
 GROUP BY 1,2
-        );
-      
+    )
+;
+
+
   

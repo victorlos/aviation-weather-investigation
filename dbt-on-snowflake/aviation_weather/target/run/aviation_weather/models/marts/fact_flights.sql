@@ -2,9 +2,14 @@
   
     
 
-        create or replace transient table AVIATION_WEATHER_PROJECT.DEV.fact_flights
-         as
-        (SELECT 
+create or replace transient table AVIATION_WEATHER_PROJECT.DEV.fact_flights
+    
+    
+    
+    
+    
+
+    as (SELECT 
     FLIGHTDATE,
     REPORTING_AIRLINE,
     carrier.DESCRIPTION AS CARRIER_NAME,
@@ -23,6 +28,8 @@
 FROM AVIATION_WEATHER_PROJECT.PUBLIC.raw_flights rf
 LEFT JOIN AVIATION_WEATHER_PROJECT.PUBLIC.raw_carrier_lookup carrier
 ON rf.REPORTING_AIRLINE = carrier.CODE
-        );
-      
+    )
+;
+
+
   

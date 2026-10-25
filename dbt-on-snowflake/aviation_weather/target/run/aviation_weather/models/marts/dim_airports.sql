@@ -2,9 +2,14 @@
   
     
 
-        create or replace transient table AVIATION_WEATHER_PROJECT.DEV.dim_airports
-         as
-        (WITH STATIONS AS (
+create or replace transient table AVIATION_WEATHER_PROJECT.DEV.dim_airports
+    
+    
+    
+    
+    
+
+    as (WITH STATIONS AS (
     SELECT 
       TRIM(SUBSTR(ALL_DATA, 1, 11))           AS STATION_ID,
       TRY_TO_DOUBLE(SUBSTR(ALL_DATA, 13, 8))  AS LATITUDE,
@@ -90,6 +95,8 @@ SELECT
     DISTANCE_KM
 FROM DISTANCE
 WHERE ROW_NUM = 1 -- DEDUPLICATE AIRPORTS WITH MORE THAN 1 STATION AND CHOOSE CLOSEST ONE
-        );
-      
+    )
+;
+
+
   

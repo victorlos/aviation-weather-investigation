@@ -6,6 +6,6 @@ SELECT
     TRY_TO_DOUBLE(SUBSTR(ALL_DATA, 32, 6))  AS ALTITUDE,
     TRIM(SUBSTR(ALL_DATA, 39, 2))           AS STATE,
     TRIM(SUBSTR(ALL_DATA, 42, 30))          AS NAME
-FROM {{ source('noah_weather','raw_stations') }}
+FROM {{ source('noaa_weather','raw_stations') }}
 WHERE 
     TRIM(SUBSTR(ALL_DATA, 1, 3)) = 'USW' -- ONLY GET STATIONS AT US AIRPORTS

@@ -1,6 +1,0 @@
-aviation_weather/target/
-aviation_weather/dbt_packages/
-aviation_weather/logs/
-.vscode/settings.json
-aviation_weather/.env
-aviation_weather/logs/

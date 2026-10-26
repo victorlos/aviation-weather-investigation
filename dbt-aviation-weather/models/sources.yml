@@ -8,7 +8,7 @@ sources:
       - name: raw_airport_coordinates
       - name: raw_carrier_lookup
 
-  - name: noah_weather
+  - name: noaa_weather
     database: AVIATION_WEATHER_PROJECT
     schema: PUBLIC
     tables:

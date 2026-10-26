@@ -11,6 +11,6 @@ SELECT
     max(iff(element = 'WT03', 1, 0)) = 1          as had_thunder,
     max(iff(element in ('WT01','WT02','WT21','WT22'), 1, 0)) = 1 as had_fog,
     max(iff(element in ('WT06','WT15','WT17'), 1, 0)) = 1        as had_icing
-FROM {{ source('noah_weather','raw_weather') }}
+FROM {{ source('noaa_weather','raw_weather') }}
 WHERE ID like 'USW%' -- FILTER FOR STATIONS AT AIRPORTS
 GROUP BY 1,2

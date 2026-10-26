@@ -1,0 +1,12 @@
+data/
+*.zip
+*.csv.gz
+.env
+.vscode/
+dbt-aviation-weather/target/
+dbt-aviation-weather/.dbt/
+dbt-aviation-weather/logs/
+dbt-aviation-weather/dbt_packages/
+dbt-aviation-weather/.env
+.user.yml
+.vscode/settings.json

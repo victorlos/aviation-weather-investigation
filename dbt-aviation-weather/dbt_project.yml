@@ -1,0 +1,25 @@
+## Project
+name: aviation_weather
+version: "1.0"
+config-version: 2
+profile: aviation_weather
+
+## Sources
+model-paths: [models]
+analysis-paths: [analysis]
+test-paths: [tests]
+seed-paths: [seeds]
+macro-paths: [macros]
+snapshot-paths: [snapshots]
+
+## Target
+target-path: target
+clean-targets: [target, dbt_modules]
+
+## Models
+models:
+  aviation_weather:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

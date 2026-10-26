@@ -1,0 +1,20 @@
+
+SELECT 
+    FLIGHTDATE,
+    REPORTING_AIRLINE,
+    carrier.DESCRIPTION AS CARRIER_NAME,
+    ORIGINAIRPORTID,
+    DESTAIRPORTID,
+    DEPTIME,
+    DEPDELAY,
+    ARRTIME,
+    ARRDELAY,
+    CANCELLED,
+    AIRTIME,
+    WEATHERDELAY,
+    NASDELAY,
+    SECURITYDELAY,
+    LATEAIRCRAFTDELAY
+FROM {{ source( 'bts', 'raw_flights') }} rf
+LEFT JOIN {{ source('bts','raw_carrier_lookup') }} carrier
+ON rf.REPORTING_AIRLINE = carrier.CODE

@@ -38,3 +38,33 @@ models:
        description: "The date of the weather observation."
        data_tests:
           - not_null
+  - name: fact_flights
+    description: "This table contains the flight information for the flights in the US."
+    columns:
+     - name: FLIGHTDATE
+       description: "The date of the flight."
+       data_tests:
+          - not_null
+     - name: ORIGINAIRPORTID
+       description: "The unique identifier for the origin airport."
+       data_tests:
+          - not_null
+     - name: DESTAIRPORTID
+       description: "The unique identifier for the destination airport."
+       data_tests:
+          - not_null
+  - name: fact_flights_weather_delay
+    description: "This table contains the flight information for the flights in the US with weather delay."
+    columns:
+     - name: FLIGHTDATE
+       description: "The date of the flight."
+       data_tests:
+          - not_null
+     - name: ORIGINAIRPORTID
+       description: "The unique identifier for the origin airport."
+       data_tests:
+          - not_null
+     - name: DESTAIRPORTID
+       description: "The unique identifier for the destination airport."
+       data_tests:
+          - not_null

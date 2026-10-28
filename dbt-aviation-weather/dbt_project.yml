@@ -14,7 +14,7 @@ snapshot-paths: [snapshots]
 
 ## Target
 target-path: target
-clean-targets: [target, dbt_modules]
+clean-targets: [target, dbt_packages]
 
 ## Models
 models:

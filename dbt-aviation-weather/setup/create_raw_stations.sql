@@ -20,4 +20,3 @@ FROM (SELECT $1
 FILES = ('ghcnd-stations.txt') 
 FILE_FORMAT = '"AVIATION_WEATHER_PROJECT"."RAW_DATA"."temp_file_format_2026-10-18T14:14:57.840Z"' 
 ON_ERROR=ABORT_STATEMENT ;
--- For more details, see: https://docs.snowflake.com/en/sql-reference/sql/copy-into-table

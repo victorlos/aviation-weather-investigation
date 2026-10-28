@@ -17,4 +17,3 @@ FROM (SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $
 FILES = ('AIRPORT_CORD.csv') 
 FILE_FORMAT = '"AVIATION_WEATHER_PROJECT"."RAW_DATA"."temp_file_format_2026-10-22T13:18:15.751Z"' 
 ON_ERROR=ABORT_STATEMENT 
--- For more details, see: https://docs.snowflake.com/en/sql-reference/sql/copy-into-table

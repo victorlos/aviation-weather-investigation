@@ -17,4 +17,3 @@ FROM (SELECT $1, $2
 FILES = ('carrier_lookup.csv') 
 FILE_FORMAT = '"AVIATION_WEATHER_PROJECT"."RAW_DATA"."temp_file_format_2026-10-20T11:49:38.415Z"' 
 ON_ERROR=ABORT_STATEMENT ;
--- For more details, see: https://docs.snowflake.com/en/sql-reference/sql/copy-into-table

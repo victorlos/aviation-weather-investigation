@@ -56,4 +56,6 @@ flowchart LR
 
 Task definitions for running the dbt project on a schedule using Snowflake Tasks.
 
-## Quick Start
+## How to Run 
+
+

@@ -1,6 +1,6 @@
 # profiles.yml
 aviation_weather:
-  target: dev
+  target: ci
   outputs:
     dev:
       type: snowflake

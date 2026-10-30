@@ -21,3 +21,13 @@ aviation_weather:
       warehouse: AVIATION_WEATHER_WAREHOUSE
       database: AVIATION_WEATHER_PROJECT
       schema: CI
+
+    prod:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT', '_') }}"
+      user: "{{ env_var('SNOWFLAKE_USER', '_') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD', '_') }}"
+      role: ACCOUNTADMIN
+      warehouse: AVIATION_WEATHER_WAREHOUSE
+      database: AVIATION_WEATHER_PROJECT
+      schema: PROD

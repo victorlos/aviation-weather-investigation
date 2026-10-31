@@ -10,3 +10,4 @@ dbt-aviation-weather/dbt_packages/
 dbt-aviation-weather/.env
 .user.yml
 .vscode/settings.json
+logs/

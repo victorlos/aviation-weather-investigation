@@ -44,5 +44,13 @@ ALLOWED_AUTHENTICATION_SECRETS = (git_secret )
 ENABLED = TRUE;
 
 -- CREATE SERVICE USER FOR CI/CD PIPELINE
-CREATE USER IF NOT EXISTS CI_CD_USER
+CREATE USER IF NOT EXISTS github_actions_service_user
 TYPE = SERVICE
+WORKLOAD_IDENTITY = (
+    TYPE = OIDC
+    ISSUER = 'https://token.actions.githubusercontent.com',
+    SUBJECT = 'repo:victorlos/aviation-weather-investigation/dbt-aviation-weather:environment:prod'
+  )
+  DEFAULT_ROLE = ACCOUNTADMIN
+  COMMENT = 'Service user for GitHub Actions';
+  

@@ -32,10 +32,12 @@ jobs:
     # environment: prod # Must match the OIDC subject's environment
     env:
       SNOWFLAKE_CLI_FEATURES_ENABLE_DBT: true
-      SNOWFLAKE_ACCOUNT:  "{{ env_var('SNOWFLAKE_ACCOUNT') }}" # ${{ secrets.SNOWFLAKE_ACCOUNT }}
-     # SNOWFLAKE_PASSWORD:  "{{ env_var('SNOWFLAKE_PASSWORD') }}" # ${{ secrets.SNOWFLAKE_PAT }} # Snowflake password is required if you aren't using OIDC
-      SNOWFLAKE_DATABASE:  "{{ env_var('SNOWFLAKE_DATABASE') }}" # ${{ vars.SNOWFLAKE_DATABASE }}
-      SNOWFLAKE_SCHEMA:  "{{ env_var('SNOWFLAKE_SCHEMA') }}" # ${{ vars.SNOWFLAKE_SCHEMA }}
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_ROLE: GITHUB_ACTIONS_ROLE
+      SNOWFLAKE_PASSWORD:  ${{ secrets.SNOWFLAKE_PAT }} # Snowflake password is required if you aren't using OIDC
+      SNOWFLAKE_DATABASE: ${{ vars.SNOWFLAKE_DATABASE }}
+      SNOWFLAKE_SCHEMA: ${{ vars.SNOWFLAKE_SCHEMA }}
     defaults:
       run:
         working-directory: dbt-aviation-weather
@@ -48,7 +50,7 @@ jobs:
       - name: Install Snowflake CLI
         uses: snowflakedb/snowflake-cli-action@v2.0
         with: # Ensures Snowflake CLI will search for OIDC users matching this subject
-          use-oidc: true
+          use-oidc: false
 
       - name: Check Snowflake CLI Version
         run: snow --version
@@ -59,11 +61,11 @@ jobs:
       # The --force setting creates the object or updates it if it already exists
       # You can remove the "--source" flag if your dbt_project.yml is at root of your repo
       - name: Create a new tester dbt project object in ${{ vars.SNOWFLAKE_DATABASE }}.${{ vars.SNOWFLAKE_SCHEMA }}
-        run: snow dbt deploy tester_tasty_bytes_dbt_project_object_gh_action --source ./tasty_bytes --dbt-version 1.10.15 --force -x
+        run: snow dbt deploy tester_aviation_dbt_project_object_gh_action --source . --dbt-version 1.10.15 --force -x
 
       - name: List all of the snowflake dbt project objects in your account
         run: snow dbt list -x
 
       # Builds all models and runs tests in DAG order, failing early if any upstream test breaks
       - name: Build and test dbt project in ${{ vars.SNOWFLAKE_DATABASE }}.${{ vars.SNOWFLAKE_SCHEMA }}
-        run: snow dbt execute -x tester_tasty_bytes_dbt_project_object_gh_action build --target dev
+        run: snow dbt execute -x tester_aviation_dbt_project_object_gh_action build --target ci

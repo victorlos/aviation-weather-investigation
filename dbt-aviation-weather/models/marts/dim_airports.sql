@@ -1,12 +1,12 @@
 WITH STATIONS AS (
     SELECT 
-      TRIM(SUBSTR(ALL_DATA, 1, 11))           AS STATION_ID,
-      TRY_TO_DOUBLE(SUBSTR(ALL_DATA, 13, 8))  AS LATITUDE,
-      TRY_TO_DOUBLE(SUBSTR(ALL_DATA, 22, 9))  AS LONGITUDE,
-      TRY_TO_DOUBLE(SUBSTR(ALL_DATA, 32, 6))  AS ALTITUDE,
-      TRIM(SUBSTR(ALL_DATA, 39, 2))           AS STATE,
-      TRIM(SUBSTR(ALL_DATA, 42, 30))          AS NAME
-    FROM {{ source('noaa_weather','raw_stations') }}
+      STATION_ID,
+      LATITUDE,
+      LONGITUDE,
+      ALTITUDE,
+      STATE,
+      NAME
+    FROM {{ ref('stg_noaa__stations') }}
     WHERE 1=1
        AND TRIM(SUBSTR(ALL_DATA, 1, 3)) = 'USW' -- ONLY GET STATIONS AT US AIRPORTS
     ),

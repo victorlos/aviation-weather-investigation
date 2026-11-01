@@ -14,7 +14,11 @@ SELECT
     WEATHERDELAY,
     NASDELAY,
     SECURITYDELAY,
-    LATEAIRCRAFTDELAY
+    LATEAIRCRAFTDELAY,
+    CANCELLATIONCODE,
+    CARRIERDELAY,
+    DIVERTED, 
+    ARRDEL15
 FROM {{ source( 'bts', 'raw_flights') }} rf
 LEFT JOIN {{ source('bts','raw_carrier_lookup') }} carrier
 ON rf.REPORTING_AIRLINE = carrier.CODE

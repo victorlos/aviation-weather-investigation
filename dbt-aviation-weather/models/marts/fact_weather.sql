@@ -13,4 +13,5 @@ SELECT
     max(iff(element in ('WT06','WT15','WT17'), 1, 0)) = 1        as had_icing
 FROM {{ source('noaa_weather','raw_weather') }}
 WHERE ID like 'USW%' -- FILTER FOR STATIONS AT AIRPORTS
+AND Q_FLAG IS NULL -- FILTER FOR QUALITY DATA
 GROUP BY 1,2

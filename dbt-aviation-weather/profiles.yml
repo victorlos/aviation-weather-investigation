@@ -27,7 +27,7 @@ aviation_weather:
       account: "{{ env_var('SNOWFLAKE_ACCOUNT', '_') }}"
       user: "{{ env_var('SNOWFLAKE_USER', '_') }}"
       password: "{{ env_var('SNOWFLAKE_PASSWORD', '_') }}"
-      role: ACCOUNTADMIN
+      role: GITHUB_ACTIONS_ROLE
       warehouse: AVIATION_WEATHER_WAREHOUSE
       database: AVIATION_WEATHER_PROJECT
       schema: PROD

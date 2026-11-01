@@ -36,7 +36,8 @@ jobs:
       SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
       SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
       SNOWFLAKE_ROLE: GITHUB_ACTIONS_ROLE
-      SNOWFLAKE_PASSWORD:  ${{ secrets.SNOWFLAKE_PAT }} # Snowflake password is required if you aren't using OIDC
+      SNOWFLAKE_PASSWORD:  ${{ secrets.SNOWFLAKE_PAT }} 
+      # Generate a new PAT in Snowsight >> Governance and security >> Users & Roles >> Click on the User >> Programmatic Access Tokens 
       SNOWFLAKE_DATABASE: ${{ vars.SNOWFLAKE_DATABASE }}
       SNOWFLAKE_SCHEMA: ${{ vars.SNOWFLAKE_SCHEMA }}
     defaults:

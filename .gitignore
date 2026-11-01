@@ -11,3 +11,7 @@ dbt-aviation-weather/.env
 .user.yml
 .vscode/settings.json
 logs/
+.venv/
+__pycache__/
+.DS_Store
+.ipynb_checkpoints/

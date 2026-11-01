@@ -16,7 +16,11 @@ SELECT
     da_dest.display_airport_city_name_full dest_city,
     da_dest.distance_km dest_dist_airport_station,
     (fw_dest.is_heavy_rain OR fw_dest.is_high_wind OR fw_dest.is_freezing OR fw_dest.precip_mm > 25) dest_bad_weather,
-    (fw_dest.had_thunder OR fw_dest.had_fog OR fw_dest.had_icing) as dest_other_weather_issue
+    (fw_dest.had_thunder OR fw_dest.had_fog OR fw_dest.had_icing) as dest_other_weather_issue,
+    ff.NASDELAY, 
+    ff.CANCELLED, 
+    ff.CANCELLATIONCODE, 
+    ff.ARRDEL15
 FROM {{ ref('fact_flights') }} ff
 LEFT JOIN {{ ref('dim_airports') }} da_dest
 ON ff.DESTAIRPORTID = da_dest.AIRPORT_ID

@@ -8,7 +8,7 @@ WITH STATIONS AS (
       NAME
     FROM {{ ref('stg_noaa__stations') }}
     WHERE 1=1
-       AND TRIM(SUBSTR(ALL_DATA, 1, 3)) = 'USW' -- ONLY GET STATIONS AT US AIRPORTS
+       AND STATION_ID LIKE 'USW%' -- ONLY GET STATIONS AT US AIRPORTS
     ),
     
     AIRPORTS AS (

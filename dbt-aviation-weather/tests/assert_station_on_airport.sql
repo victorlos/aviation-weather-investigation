@@ -1,13 +1,13 @@
 
 SELECT 
-    airport,
-    display_airport_name,
-    display_airport_city_name_full
+    AIRPORT,
+    DISPLAY_AIRPORT_NAME,
+    DISPLAY_AIRPORT_CITY_NAME_FULL
 FROM {{ source('bts', 'raw_airport_coordinates') }} AS raw_airports
 WHERE NOT EXISTS (
     SELECT 1
     FROM {{ ref('dim_airports') }} AS dim_airports
-    WHERE dim_airports.airport_id = raw_airports.airport_id
+    WHERE dim_airports.airport_code = raw_airports.AIRPORT_ID
 )
 AND AIRPORT_IS_LATEST = 1 -- FILTER FOR LAST ROW OF AIRPORT IN SOURCE
 AND AIRPORT_IS_CLOSED = 0 -- FILTER FOR OPEN AIRPORTS

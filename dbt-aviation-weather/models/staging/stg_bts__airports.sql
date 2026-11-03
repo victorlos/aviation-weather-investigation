@@ -1,0 +1,17 @@
+
+    SELECT 
+      AIRPORT_SEQ_ID                    AS AIRPORT_SEQUENCE_ID,
+      AIRPORT_ID                        AS AIRPORT_CODE,
+      AIRPORT                           AS AIRPORT_NAME,
+      DISPLAY_AIRPORT_NAME              AS DISPLAY_AIRPORT_NAME,
+      DISPLAY_AIRPORT_CITY_NAME_FULL    AS DISPLAY_AIRPORT_CITY_NAME_FULL,
+      AIRPORT_COUNTRY_NAME              AS AIRPORT_COUNTRY_NAME,
+      AIRPORT_COUNTRY_CODE_ISO          AS AIRPORT_COUNTRY_CODE_ISO,
+      AIRPORT_STATE_NAME                AS AIRPORT_STATE_NAME,
+      AIRPORT_STATE_CODE                AS AIRPORT_STATE_CODE,
+      DISPLAY_CITY_MARKET_NAME_FULL     AS DISPLAY_CITY_MARKET_NAME_FULL,
+      LATITUDE                          AS LATITUDE,
+      LONGITUDE                         AS LONGITUDE,
+      AIRPORT_IS_LATEST                 AS AIRPORT_IS_LATEST,
+      AIRPORT_IS_CLOSED                 AS AIRPORT_IS_CLOSED
+    FROM {{ source('bts','raw_airport_coordinates') }}

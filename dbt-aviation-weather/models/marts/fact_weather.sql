@@ -25,7 +25,7 @@ AND Q_FLAG IS NULL -- FILTER FOR QUALITY DATA
 
 {% if is_incremental() %}
 
-    AND (DATE >= (SELECT DATE_ADD( 'day', -30, MAX(DATE) ) FROM {{ this }})) -- ONLY GET NEW DATA
+    AND (DATE >= (SELECT DATEADD( 'day', -30, MAX(DATE) ) FROM {{ this }})) -- ONLY GET NEW DATA
 
 {% endif %}
 

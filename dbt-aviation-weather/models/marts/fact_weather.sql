@@ -1,4 +1,12 @@
 
+{{
+    config(
+        materialized = 'incremental',
+        unique_key = ['STATION_ID', 'DATE'],
+        on_schema_change = 'sync_all_columns',
+    )
+}}
+
 SELECT 
     STATION_ID, 
     DATE,
@@ -14,4 +22,12 @@ SELECT
 FROM {{ ref('stg_noaa__weather') }}
 WHERE STATION_ID like 'USW%' -- FILTER FOR STATIONS AT AIRPORTS
 AND Q_FLAG IS NULL -- FILTER FOR QUALITY DATA
+
+{% if is_incremental() %}
+
+    AND (DATE >= (SELECT DATE_ADD( 'day', -30, MAX(DATE) ) FROM {{ this }})) -- ONLY GET NEW DATA
+
+{% endif %}
+
 GROUP BY 1,2
+

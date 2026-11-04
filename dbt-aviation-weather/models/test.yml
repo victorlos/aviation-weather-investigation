@@ -20,7 +20,7 @@ models:
   - name: dim_airports
     description: "This table contains the airport information for all airports in the US."
     columns:
-     - name: AIRPORT_ID
+     - name: AIRPORT_CODE
        description: "The unique identifier for the airport."
        data_tests:
           - not_null
@@ -42,30 +42,30 @@ models:
   - name: fact_flights
     description: "This table contains the flight information for the flights in the US."
     columns:
-     - name: FLIGHTDATE
+     - name: FLIGHT_DATE
        description: "The date of the flight."
        data_tests:
           - not_null
-     - name: ORIGINAIRPORTID
+     - name: ORIGIN_AIRPORT_ID
        description: "The unique identifier for the origin airport."
        data_tests:
           - not_null
-     - name: DESTAIRPORTID
+     - name: DESTINATION_AIRPORT_ID
        description: "The unique identifier for the destination airport."
        data_tests:
           - not_null
   - name: fact_flights_weather_delay
     description: "This table contains the flight information for the flights in the US with weather delay."
     columns:
-     - name: FLIGHTDATE
+     - name: FLIGHT_DATE
        description: "The date of the flight."
        data_tests:
           - not_null
-     - name: ORIGINAIRPORTID
+     - name: ORIGIN_AIRPORT_ID
        description: "The unique identifier for the origin airport."
        data_tests:
           - not_null
-     - name: DESTAIRPORTID
+     - name: DESTINATION_AIRPORT_ID
        description: "The unique identifier for the destination airport."
        data_tests:
           - not_null

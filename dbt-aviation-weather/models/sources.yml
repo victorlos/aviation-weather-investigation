@@ -14,3 +14,8 @@ sources:
     tables:
       - name: raw_stations
       - name: raw_weather
+        description: "This table contains the raw weather information for the weather in the US."
+        loaded_at_field: "to_timestamp(to_varchar(date), 'YYYYMMDD')"
+        freshness:
+          warn_after: {count: 4, period: day}
+          error_after: {count: 7, period: day}

@@ -9,7 +9,7 @@
 **How much does weather really delay U.S. flights?**
 > An end-to-end analytics engineering project that combines U.S. flight performance data (BTS) with daily weather observations (NOAA) to measure how rain, wind, thunderstorms, fog and freezing conditions affect delays and cancellations at U.S. airports.
 
-Built with **dbt** running natively on **Snowflake** (dbt Projects on Snowflake), with Python ingestion scripts and a tested, layered data model.
+Built with **dbt** running natively on **Snowflake** (dbt Projects on Snowflake), with Python ingestion scripts, a tested, layered data model, and a daily incremental weather refresh orchestrated with **Snowflake Tasks**.
 
 ---
 
@@ -45,6 +45,8 @@ flowchart LR
         STG["dbt staging<br/>views"]
         MART["dbt marts<br/>facts + dimensions"]
         AN["dbt analyses"]
+        T1["Task: refresh weather<br/>daily MERGE, 02:00 UTC"]
+        T2["Task: build weather models<br/>incremental dbt build"]
     end
  
     BTS --> NB2
@@ -59,6 +61,10 @@ flowchart LR
     RAW -->|source| MART
     STG -->|ref| MART
     MART --> AN
+    ST2 -->|last 30 days| T1
+    T1 -->|MERGE| RAW
+    T1 -->|then| T2
+    T2 -.->|builds| MART
 ```
  
 ### CI/CD
@@ -73,8 +79,10 @@ flowchart LR
 **Key design decisions**
  
 - **EL is separated from T.** Ingestion (downloads, stages, `COPY INTO`) lives in Python and SQL scripts outside dbt. dbt only transforms data that is already in Snowflake, declared as `sources`.
-- **Airports are matched to weather stations by location, not by name.** Station and airport names never match reliably, so the project computes the distance between every airport and nearby NOAA stations with Snowflake's `HAVERSINE` function and keeps the closest station within 25 km.
-- **dbt runs inside Snowflake.** The project is developed in a Git-connected Snowflake Workspace and executed with `EXECUTE DBT PROJECT`, with no external dbt server.
+- **Airports are matched to weather stations by location, not by name.** Station and airport names never match reliably, so the project computes the distance between every airport and nearby NOAA stations with Snowflake's `HAVERSINE` function and keeps the closest station within 20 km.
+- **dbt runs inside Snowflake.** GitHub Actions deploys the project as a Snowflake object (dbt Projects on Snowflake) with the Snowflake CLI, and it runs there with `EXECUTE DBT PROJECT`, with no external dbt server.
+- **Weather data is refreshed incrementally.** NOAA rewrites its current-year file every day, so instead of reloading it, a daily task `MERGE`s only the last 30 days into `RAW_WEATHER`: new readings are inserted, corrected readings are updated, and nothing is duplicated.
+- **`fact_weather` is an incremental model.** Each run recomputes only the last 30 days and merges them by station and date, since NOAA keeps adding late readings for recent days.
 
 
 ## 📊 Data Sources
@@ -85,18 +93,42 @@ flowchart LR
 | [BTS Master Coordinate](https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FLL&QO_fu146_anzr=N8vn6v10%20f722146%20gnoyr5) | Airport IDs, codes, latitude, longitude and UTC offset | One row per airport version | Web form (automated with Selenium) |
 | [NOAA GHCN-Daily](https://registry.opendata.aws/noaa-ghcn/) | Daily weather observations: precipitation, temperature, wind and weather-type flags | One row per station, day and element | Public AWS S3 bucket |
  
-**Period covered:** January 2025 – July 2026 <!-- TODO: update if you load more months -->
+**Period covered:** flights from January 2025 to July 2026; weather from January 2025, refreshed daily.
  
 ---
 
-### CI/CD (`.github/workflows/`)
+## 🔄 Daily Weather Refresh (Incremental Load)
 
-- **`incoming_pr.yml`** — Runs dbt checks against a dev environment when a PR is opened.
-- **`pr_merged.yml`** — Deploys the dbt project to production when a PR is merged.
+Weather data keeps updating after the initial load, through two Snowflake Tasks created by `dbt-aviation-weather/setup/create_task_refresh_weather_data.sql`:
 
-### Scheduling (`schedules.sql`)
+| Task | When | What it does |
+|---|---|---|
+| `RAW_DATA.TASK_REFRESH_WEATHER_DATA` | Every day at 02:00 UTC | Reads the current-year NOAA file from S3 and `MERGE`s the last 30 days of airport-station readings into `RAW_WEATHER` |
+| `RAW_DATA.BUILD_FACT_WEATHER` | Right after the refresh | Runs `dbt build --select +fact_weather+` on the production dbt project object |
 
-Task definitions for running the dbt project on a schedule using Snowflake Tasks.
+`fact_weather` is materialized as **incremental** (`unique_key = ['STATION_ID', 'DATE']`):
+
+- The **first run** builds the whole table.
+- **Later runs** recompute only the last 30 days before the most recent date already in the table, then merge them in. Days that changed are replaced, and new days are added.
+- After changing the model's logic, rebuild it once from scratch: `dbt build --select fact_weather --full-refresh`.
+
+Monitoring and maintenance:
+
+```sql
+-- Recent runs, with errors if any
+SELECT name, state, scheduled_time, error_message
+FROM TABLE(AVIATION_WEATHER_PROJECT.INFORMATION_SCHEMA.TASK_HISTORY())
+ORDER BY scheduled_time DESC;
+
+-- Run the refresh now instead of waiting for the schedule
+EXECUTE TASK AVIATION_WEATHER_PROJECT.RAW_DATA.TASK_REFRESH_WEATHER_DATA;
+
+-- Pause both tasks to stop spending credits
+ALTER TASK AVIATION_WEATHER_PROJECT.RAW_DATA.TASK_REFRESH_WEATHER_DATA SUSPEND;
+ALTER TASK AVIATION_WEATHER_PROJECT.RAW_DATA.BUILD_FACT_WEATHER SUSPEND;
+```
+
+> **Every January:** the refresh reads `csv/by_year/<year>.csv`, so update the year in the task script (for example, 2026 → 2027) and run it again.
 
 ## 🚀 How to Run
  
@@ -145,7 +177,9 @@ Then run **`notebooks/02_download_aviation_data.ipynb`**. It downloads the BTS m
  
 ### 5. Create and load the raw tables
  
-Run **`notebooks/03_create_raw_tables.ipynb`**. It executes every script in `dbt-aviation-weather/setup/`, which creates the five raw tables in `RAW_DATA` and loads them with `COPY INTO`. The first run takes a few minutes, mostly to load two years of global weather data.
+Run **`notebooks/03_create_raw_tables.ipynb`**. It executes the scripts in `dbt-aviation-weather/setup/` in alphabetical order: the `create_raw_*` scripts create the five raw tables in `RAW_DATA` and load them with `COPY INTO`, and `create_task_refresh_weather_data.sql` creates and starts the two daily tasks described in [Daily Weather Refresh](#-daily-weather-refresh-incremental-load). The first run takes a few minutes, mostly to load two years of global weather data.
+
+> The build task runs the production dbt project object deployed by the CD workflow (step 8). Until that object exists, the refresh task still updates `RAW_WEATHER`, but the build task fails.
  
 ### 6. Build the dbt models
  
@@ -209,7 +243,7 @@ EXECUTE DBT PROJECT AVIATION_WEATHER_PROJECT.CICD.AVIATION_WEATHER_DBT_OBJECT_GH
 │   ├── 02_download_aviation_data.ipynb
 │   └── 03_create_raw_tables.ipynb
 ├── dbt-aviation-weather/
-│   ├── setup/                   SQL that creates and loads the raw tables
+│   ├── setup/                   SQL that creates and loads the raw tables, and the daily refresh tasks
 │   ├── models/
 │   │   ├── staging/
 │   │   ├── marts/
@@ -220,5 +254,6 @@ EXECUTE DBT PROJECT AVIATION_WEATHER_PROJECT.CICD.AVIATION_WEATHER_DBT_OBJECT_GH
 │   ├── dbt_project.yml
 │   └── profiles.yml             targets dev, ci and prod (no secrets)
 ├── .env.example
+├── LICENSE
 └── requirements.txt
 ```

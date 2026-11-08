@@ -1,0 +1,8 @@
+snapshots:
+   - name: scd_raw_weather_snapshot
+     relation: source('noaa_weather', 'raw_weather')
+     config:
+       unique_key: [ID, DATE]
+       strategy: check
+       check_cols: [DATA_VALUE, ELEMENT, M_FLAG, Q_FLAG, S_FLAG]
+       hard_deletes: invalidate

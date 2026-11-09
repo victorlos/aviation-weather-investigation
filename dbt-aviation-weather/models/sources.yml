@@ -5,14 +5,18 @@ sources:
     schema: RAW_DATA
     tables:
       - name: raw_flights
+        description: "This table contains the flight information for the flights in the US."
       - name: raw_airport_coordinates
+        description: "This table contains the coordinates for all airports in the US."
       - name: raw_carrier_lookup
+        description: "This table contains the lookup information for all carriers in the US."
 
   - name: noaa_weather
     database: AVIATION_WEATHER_PROJECT
     schema: RAW_DATA
     tables:
       - name: raw_stations
+        description: "This table contains the station information for all stations in the US."
       - name: raw_weather
         description: "This table contains the raw weather information for the weather in the US."
         loaded_at_field: "to_timestamp(to_varchar(date), 'YYYYMMDD')"

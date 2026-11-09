@@ -10,12 +10,12 @@
 SELECT 
     STATION_ID, 
     DATE,
-    max(iff(ELEMENT = 'PRCP', DATA_VALUE / 10, null)) >= 25  as IS_HEAVY_RAIN,
-    max(iff(ELEMENT = 'WSF5', DATA_VALUE / 10 , null)) >= 15 as IS_HIGH_WIND,
-    max(iff(ELEMENT = 'TMIN', DATA_VALUE / 10 , null )) <= 0 as IS_FREEZING,
-    max(iff(ELEMENT = 'PRCP', DATA_VALUE / 10, null))  as PRECIP_MM,
-    max(iff(ELEMENT = 'WSF5', DATA_VALUE / 10, null))  as MAX_GUST_MS,
-    max(iff(ELEMENT = 'TMIN', DATA_VALUE / 10, null))  as TMIN_C,
+    {{ max_iff('PRCP') }} >= 25 as IS_HEAVY_RAIN,
+    {{ max_iff('WSF5') }} >= 15 as IS_HIGH_WIND,
+    {{ max_iff('TMIN') }} <= 0 as IS_FREEZING,
+    {{ max_iff('PRCP') }} as PRECIP_MM,
+    {{ max_iff('WSF5') }} as MAX_GUST_MS,
+    {{ max_iff('TMIN') }} as TMIN_C,
     max(iff(ELEMENT = 'WT03', 1, 0)) = 1          as IS_THUNDER,
     max(iff(ELEMENT in ('WT01','WT02','WT21','WT22'), 1, 0)) = 1 as IS_FOG,
     max(iff(ELEMENT in ('WT06','WT15','WT17'), 1, 0)) = 1        as IS_ICING
